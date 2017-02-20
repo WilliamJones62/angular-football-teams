@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'static_pages#home'
+  root 'application#index'
   # destroy as get requests
   get '/teams/:id/destroy', to: 'teams#destroy'
   resources :player_games
@@ -8,8 +8,5 @@ Rails.application.routes.draw do
     resources :players
     resources :games
   end
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  get '/users/sign_out', to: 'static_pages#home'
-  get '/teams/:team_id/players/:id/data', to: 'players#data'
-
+  get '*path' => 'application#index'
 end

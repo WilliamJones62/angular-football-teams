@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require handlebars.min
+//= require angular.js
+//= require angular-ui-router.js
+//= require_tree ../templates
 //= require_tree .

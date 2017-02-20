@@ -6,6 +6,7 @@ class TeamsController < ApplicationController
 
   def index
     @teams = Team.all
+    render :json => @teams
   end
 
   def new
@@ -17,8 +18,6 @@ class TeamsController < ApplicationController
 
   def edit
     @players = @team.players
-#    @player = @team.players.build
-#    @game = @team.games.build
   end
 
   def create

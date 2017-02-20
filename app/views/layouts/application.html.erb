@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="footballteamsApp">
   <head>
     <title>FootballTeams</title>
+
+    <base href="/">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-  </head>
+</head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <%= yield %>
+    <div class="header">
+			<div class="header__fixed">
+			</div>
+		</div>
+
+    <script src="app/assets/javascripts/angular.js" type="text/javascript"></script>
+		<script src="app/assets/javascripts/angular-ui-router.js"></script>
+	  <script src="app/assets/javascripts/app.js"></script>
   </body>
 </html>

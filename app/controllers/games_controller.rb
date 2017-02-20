@@ -5,7 +5,6 @@ class GamesController < ApplicationController
   def create
     @game = @team.games.build(games_params)
     if @game.save
-#      render 'games/basic', layout: false
       render :json => @game
     end
   end
