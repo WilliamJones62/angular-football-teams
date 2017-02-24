@@ -5,7 +5,7 @@
         .module('app')
         .controller('TeamsController',['TeamFactory', '$stateParams', function(TeamFactory, $stateParams) {
             var vm = this
-            vm.team = { id: null, name: '' }
+            vm.team = { id: null, name: '', league: '' }
 
 
             vm.getTeams = function() {
@@ -19,7 +19,7 @@
               TeamFactory.createTeam(team)
                          .then(function success(response){
                            vm.getTeams();
-                           vm.team = { id: null, name: '' }
+                           vm.team = { id: null, name: '', league: '' }
                          });
             };
 
@@ -39,7 +39,7 @@
 
             vm.teams = vm.getTeams()
 
-            function setTeam(data) {
+            function setTeams(data) {
               vm.teams = data;
             }
 

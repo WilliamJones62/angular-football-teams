@@ -1,9 +1,5 @@
 class TeamsController < ApplicationController
 
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in?, only: [:new, :edit, :update, :destroy]
-  before_action :authorize_user!, only: [:edit, :update, :destroy]
-
   def index
     @teams = Team.all
     render :json => @teams
@@ -68,11 +64,6 @@ class TeamsController < ApplicationController
   end
 
 private
-    def set_team
-      @team = Team.find(params[:id])
-      session[:team_id] = @team_id
-    end
-
     def team_params
       params.require(:team).permit(
         :name, :league,
@@ -91,15 +82,4 @@ private
       )
     end
 
-    def signed_in?
-      unless current_user
-        redirect_to teams_path, :alert => "Access denied."
-      end
-    end
-
-    def authorize_user!
-      unless current_user.id == @team.user_id || current_user.admin?
-        redirect_to team_path(id: @team.id), :alert => "Access denied."
-      end
-    end
 end

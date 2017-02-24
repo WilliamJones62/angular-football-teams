@@ -11,9 +11,9 @@
           })
 
           .state('teams', {
-              url: '/teams',
-              templateUrl: 'teams.html',
-              controller: 'teamsController as vm'
+            url: '/teams',
+            templateUrl: 'team.html',
+            controller: 'TeamsController as vm'
           })
 
         $urlRouterProvider.otherwise('/')
