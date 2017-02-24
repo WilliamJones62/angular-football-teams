@@ -13,7 +13,7 @@
           .state('teams', {
             url: '/teams',
             templateUrl: 'team.html',
-            controller: 'TeamsController as vm'
+            controller: 'TeamController as vm'
           })
 
         $urlRouterProvider.otherwise('/')

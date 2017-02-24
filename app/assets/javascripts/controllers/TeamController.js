@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .controller('TeamsController',['TeamFactory', '$stateParams', function(TeamFactory, $stateParams) {
+        .controller('TeamController',['TeamFactory', '$stateParams', function(TeamFactory, $stateParams) {
             var vm = this
             vm.team = { id: null, name: '', league: '' }
 

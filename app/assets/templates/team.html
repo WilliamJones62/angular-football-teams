@@ -1,50 +1,48 @@
-<div ng-controller="TeamsController as vm">
-  <div class="team">
+<div class="team">
 
-    <h1 class=" team-name text-center">Your Team's</h1>
+  <h1 class=" team-name text-center">Your Team's</h1>
 
-    <div class="margin-b-20">
-      <a class="add-btn" href="" ng-click="showme=true">+ Add a Team</a>
-        <input class="search-btn pull-right" placeholder="Search for a Team" ng-model="search.name">
-    </div>
-    <form name="myForm" ng-show="showme" ng-submit="vm.handleCreate(); showme=false">
+  <div class="margin-b-20">
+    <a class="add-btn" href="" ng-click="showme=true">+ Add a Team</a>
+      <input class="search-btn pull-right" placeholder="Search for a Team" ng-model="search.name">
+  </div>
+  <form name="myForm" ng-show="showme" ng-submit="vm.handleCreate(); showme=false">
 
 
-      <input
-      name="myName"
-      type="text"
-      class="new-team"
-      placeholder="Type Your Team Name"
-      ng-model="vm.team.name"
-      required="required"
-      >
+    <input
+    name="myName"
+    type="text"
+    class="new-team"
+    placeholder="Type Your Team Name"
+    ng-model="vm.team.name"
+    required="required"
+    >
 
-      <div ng-messages="myForm.myName.$error"
-      ng-if="myForm.myName.$touched && myForm.myName.$error ">
-        <div class="error-message text-center" ng-message="required">Team Required!
-        </div>
+    <div ng-messages="myForm.myName.$error"
+    ng-if="myForm.myName.$touched && myForm.myName.$error ">
+      <div class="error-message text-center" ng-message="required">Team Required!
       </div>
+    </div>
 
-    </form>
-
-
-    <div class="item" ng-class="{'editing-item': editing, 'edited': team.edited}" ng-repeat="team in vm.teams | filter:search">
+  </form>
 
 
-
-      <div class="item-div">
-
-
-        <a onbeforesave="vm.handleEdit(team.id, team)" blur="submit" buttons="no" class="team-league"  href="#" editable-text="team.name">{{ team.name || 'empty' }}</a>
-
-        <div class="pull-right">
+  <div class="item" ng-class="{'editing-item': editing, 'edited': team.edited}" ng-repeat="team in vm.teams | filter:search">
 
 
-          <a class="delete-btn" href="#" ng-click="vm.handleDelete(team.id)">X</a>
-          <a href="/teams/{{ team.id }}"> <i class=" arrow-btn fa fa-share" aria-hidden="true"></i></a>
+
+    <div class="item-div">
 
 
-        </div>
+      <a onbeforesave="vm.handleEdit(team.id, team)" blur="submit" buttons="no" class="team-league"  href="#" editable-text="team.name">{{ team.name || 'empty' }}</a>
+
+      <div class="pull-right">
+
+
+        <a class="delete-btn" href="#" ng-click="vm.handleDelete(team.id)">X</a>
+        <a href="/teams/{{ team.id }}"> <i class=" arrow-btn fa fa-share" aria-hidden="true"></i></a>
+
+
       </div>
     </div>
   </div>
