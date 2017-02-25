@@ -42,7 +42,7 @@
             }
 
             function handleError(error) {
-                console.log("There was an error this http request: ", error)
+                console.log("There was an error with this http request: ", error)
             }
         }])
 }())

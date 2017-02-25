@@ -4,46 +4,45 @@
 
   <div class="margin-b-20">
     <a class="add-btn" href="" ng-click="showme=true">+ Add a Team</a>
-      <input class="search-btn pull-right" placeholder="Search for a Team" ng-model="search.name">
+    <input class="search-btn pull-right" placeholder="Search for a Team" ng-model="search.name">
   </div>
+  <br>
   <form name="myForm" ng-show="showme" ng-submit="vm.handleCreate(); showme=false">
 
 
     <input
-    name="myName"
-    type="text"
-    class="new-team"
-    placeholder="Type Your Team Name"
-    ng-model="vm.team.name"
-    required="required"
+      name="myName"
+      type="text"
+      class="new-team"
+      placeholder="Team Name"
+      ng-model="vm.team.name"
+      required="required"
     >
 
-    <div ng-messages="myForm.myName.$error"
-    ng-if="myForm.myName.$touched && myForm.myName.$error ">
-      <div class="error-message text-center" ng-message="required">Team Required!
-      </div>
+    <input
+      name="myLeague"
+      type="text"
+      class="new-league"
+      placeholder="League"
+      ng-model="vm.team.league"
+      required="required"
+    >
+    <button ng-click="vm.handlecreate()">Add</button>
+
+    <div ng-messages="myForm.myName.$error" ng-if="myForm.myName.$touched && myForm.myName.$error ">
+        <div class="error-message text-center" ng-message="required">Team name required!
+        </div>
+    </div>
+
+    <div ng-messages="myForm.myLeague.$error" ng-if="myForm.myLeague.$touched && myForm.myLeague.$error ">
+        <div class="error-message text-center" ng-message="required">Team's league required!
+        </div>
     </div>
 
   </form>
 
-
-  <div class="item" ng-class="{'editing-item': editing, 'edited': team.edited}" ng-repeat="team in vm.teams | filter:search">
-
-
-
-    <div class="item-div">
-
-
-      <a onbeforesave="vm.handleEdit(team.id, team)" blur="submit" buttons="no" class="team-league"  href="#" editable-text="team.name">{{ team.name || 'empty' }}</a>
-
-      <div class="pull-right">
-
-
-        <a class="delete-btn" href="#" ng-click="vm.handleDelete(team.id)">X</a>
-        <a href="/teams/{{ team.id }}"> <i class=" arrow-btn fa fa-share" aria-hidden="true"></i></a>
-
-
-      </div>
-    </div>
+  <div ng-repeat="team in vm.teams | filter:search">
+    <a ui-sref="club({ id: team.id })">{{ team.name }} - {{ team.league }}</a>
+    <button ng-click="vm.handleDelete(team.id)">Delete</button>
   </div>
 </div>

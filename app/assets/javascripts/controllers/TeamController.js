@@ -31,7 +31,7 @@
             };
 
             vm.deleteTeam = function (teamId) {
-              teamFactory.deleteTeam(teamId)
+              TeamFactory.deleteTeam(teamId)
                          .then(function success(response){
                            vm.getTeams();
                           });

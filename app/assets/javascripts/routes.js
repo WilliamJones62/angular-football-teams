@@ -16,6 +16,12 @@
             controller: 'TeamController as vm'
           })
 
+          .state('club', {
+              url: '/teams/:id',
+              templateUrl: 'club.html',
+              controller: 'ClubController as vm'
+          })
+
         $urlRouterProvider.otherwise('/')
       })
 }());
