@@ -1,0 +1,34 @@
+<div class="club">
+  <h1 class=" club-name text-center" ng-bind="vm.team.name"> </h1>
+
+  <div class="margin-b-20">
+    <a class="add-btn" href="" ng-click="showme=true">+ Add a Player</a>
+    <input class="search-btn pull-right" placeholder="Search for a Player" ng-model="search.name">
+  </div>
+
+  <form name="myForm" ng-show="showme" ng-submit="vm.handleCreate(); showme=false">
+
+    <input name="myName"
+    type="text"
+    class="new-player"
+    placeholder="Player Name"
+    ng-model="vm.player.name"
+    required="required"
+    >
+    <button ng-click="vm.handlecreate()">Add</button>
+
+    <div ng-messages="myForm.myName.$error" ng-if="myForm.myName.$touched && myForm.myName.$error ">
+      <div class="error-message text-center" ng-message="required">Name Required!
+      </div>
+    </div>
+
+  </form>
+
+  <div ng-repeat="player in vm.team.players | filter:search">
+    {{ player.name }}
+    <button ng-click="vm.handleDelete(player.id)">Delete</button>
+  </div>
+
+  <button ui-sref="teams">My Teams</button>
+
+</div>
