@@ -37,7 +37,8 @@ class TeamsController < ApplicationController
       render nothing: true
     else
       render json: { errors: "Error deleting team, please try again"}
-    end  end
+    end
+  end
 
 private
     def team_params

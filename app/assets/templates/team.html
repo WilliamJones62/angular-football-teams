@@ -1,17 +1,17 @@
 <div class="team">
 
-  <h1 class=" team-name text-center">Your Team's</h1>
+  <h1 class=" team-name text-center">My Team's</h1>
 
   <div class="margin-b-20">
-    <a class="add-btn" href="" ng-click="showme=true">+ Add a Team</a>
+    <button ng-click="showadd=true">Add a Team</button>
     <input class="search-btn pull-right" placeholder="Search for a Team" ng-model="search.name">
   </div>
   <br>
-  <form name="myForm" ng-show="showme" ng-submit="vm.handleCreate(); showme=false">
+  <form name="addForm" ng-show="showadd" ng-submit="showadd=false">
 
 
     <input
-      name="myName"
+      name="addName"
       type="text"
       class="new-team"
       placeholder="Team Name"
@@ -20,21 +20,21 @@
     >
 
     <input
-      name="myLeague"
+      name="addLeague"
       type="text"
       class="new-league"
       placeholder="League"
       ng-model="vm.team.league"
       required="required"
     >
-    <button ng-click="vm.handlecreate()">Add</button>
+    <button ng-if="addForm.$valid " ng-click="vm.handleCreate()">Add</button>
 
-    <div ng-messages="myForm.myName.$error" ng-if="myForm.myName.$touched && myForm.myName.$error ">
+    <div ng-messages="addForm.addName.$error" ng-if="addForm.addName.$touched && addForm.addName.$error ">
         <div class="error-message text-center" ng-message="required">Team name required!
         </div>
     </div>
 
-    <div ng-messages="myForm.myLeague.$error" ng-if="myForm.myLeague.$touched && myForm.myLeague.$error ">
+    <div ng-messages="addForm.addLeague.$error" ng-if="addForm.addLeague.$touched && addForm.addLeague.$error ">
         <div class="error-message text-center" ng-message="required">Team's league required!
         </div>
     </div>
@@ -42,7 +42,47 @@
   </form>
 
   <div ng-repeat="team in vm.teams | filter:search">
-    <a ui-sref="club({ id: team.id })">{{ team.name }} - {{ team.league }}</a>
-    <button ng-click="vm.handleDelete(team.id)">Delete</button>
+
+    <div ng-show="vm.isInReadMode(team.id)">
+      <a ui-sref="club({ id: team.id })">{{ team.name }} - {{ team.league }}</a>
+      <button ng-click="vm.startEdit(team.id, team.name, team.league)">Edit</button>
+      <button ng-click="vm.handleDelete(team.id)">Delete</button>
+    </div>
+
+    <div ng-show="vm.isInEditMode(team.id)">
+      <form name="editForm">
+
+        <input
+          name="editName"
+          type="text"
+          class="edit-team"
+          ng-model="vm.team.name"
+          required="required"
+        >
+
+        <input
+          name="editLeague"
+          type="text"
+          class="edit-league"
+          ng-model="vm.team.league"
+          required="required"
+        >
+        <button ng-if="editForm.$valid " ng-click="vm.handleEdit(team.id)">Save</button>
+        <button ng-click="vm.handleCancel()">Cancel</button>
+
+        <div ng-messages="editForm.editName.$error" ng-if="editForm.editName.$touched && editForm.editName.$error ">
+            <div class="error-message text-center" ng-message="required">Team name required!
+            </div>
+        </div>
+
+        <div ng-messages="editForm.editLeague.$error" ng-if="editForm.editLeague.$touched && editForm.editLeague.$error ">
+            <div class="error-message text-center" ng-message="required">Team's league required!
+            </div>
+        </div>
+
+      </form>
+
+    </div>
+
   </div>
 </div>

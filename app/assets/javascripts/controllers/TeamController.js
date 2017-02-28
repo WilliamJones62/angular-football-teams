@@ -4,9 +4,14 @@
     angular
         .module('app')
         .controller('TeamController',['TeamFactory', '$stateParams', function(TeamFactory, $stateParams) {
-            var vm = this
-            vm.team = { id: null, name: '', league: '' }
-
+            var selectedId = -1;
+            var savedName = '';
+            var savedLeague = '';
+            var vm = this;
+            vm.team = { id: null, name: '', league: '' };
+            vm.startEdit = startEdit;
+            vm.isInReadMode = isInReadMode;
+            vm.isInEditMode = isInEditMode;
 
             vm.getTeams = function() {
               TeamFactory.getTeams()
@@ -26,7 +31,7 @@
             vm.editTeam = function (teamId, team) {
               TeamFactory.editTeam(teamId, team)
                          .then(function success(response){
-                           vm.getteams();
+                           vm.getTeams();
                           });
             };
 
@@ -41,20 +46,39 @@
 
             function setTeams(data) {
               vm.teams = data;
+              selectedId = -1;
+              vm.team = { id: null, name: '', league: '' };
             }
 
             vm.handleCreate = function(){
               vm.createTeam(vm.team);
             }
 
-            vm.handleEdit = function(teamId,team){
-              vm.editTeam(teamId, team);
+            vm.handleEdit = function(id){
+              vm.editTeam(id, vm.team);
             }
 
             vm.handleDelete = function(id){
               vm.deleteTeam(id);
             }
 
+            vm.handleCancel = function(id){
+              vm.getTeams();
+            }
+
+            function isInReadMode(id){
+              return id != selectedId;
+            }
+
+            function isInEditMode(id){
+              return id == selectedId;
+            }
+
+            function startEdit(id, name, league){
+              selectedId = id;
+              vm.team.name = name;
+              vm.team.league = league;
+            }
 
         }])
 }())

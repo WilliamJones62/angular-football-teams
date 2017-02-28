@@ -3,8 +3,8 @@ class PlayersController < ApplicationController
   before_action :set_team
 
   def player_data
-    post = Post.find(params[:id])
-    render json: post.to_json
+    player = Player.find(params[:id])
+    render json: player.to_json
   end
 
   def create
@@ -45,6 +45,15 @@ class PlayersController < ApplicationController
     session[:team_id] = @team.id
     session[:player_id] = @player.id
     @games = @player.games.all
+  end
+
+  def destroy
+    @player = Player.find(params[:id])
+    if @player.destroy
+      render nothing: true
+    else
+      render json: { errors: "Error deleting player, please try again"}
+    end
   end
 
   def data

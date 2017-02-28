@@ -12,9 +12,9 @@
             }
 
             function getTeams() {
-                return $http.get('/teams')
-                            .then(handleResponse)
-                            .catch(handleError)
+              return $http.get('/teams')
+                          .then(handleResponse)
+                          .catch(handleError)
             }
 
             function createTeam(team) {
@@ -34,7 +34,6 @@
                           .then(handleResponse)
                           .catch(handleError)
             }
-
 
             function handleResponse(response) {
                 if (response.status === 200) return response.data
