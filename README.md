@@ -1,6 +1,6 @@
 # README
 
-Football Teams
+Angular Football Teams
 
 * Ruby version 2.3.0
 
@@ -10,7 +10,7 @@ Football Teams
 
 Project Overview:
 
-This is a ruby on rails project for creating and maintaining football team records including all players used in the team and all matches played. To use this app, simply clone, run bundle install, rake db:migrate, and rails s from the terminal. Login utilizes Devise and also Omniauth for Facebook.
+This is a ruby on rails project for creating and maintaining football team records including all players used in the team. To use this app, simply clone, run bundle install, rake db:migrate, and rails s from the terminal.
 
 Contributing
 
