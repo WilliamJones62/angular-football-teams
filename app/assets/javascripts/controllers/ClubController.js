@@ -55,15 +55,14 @@
               vm.createPlayer(teamId, vm.player);
             }
             vm.handleEdit = function(id){
-              debugger
               vm.editPlayer(teamId, vm.player, id);
             }
             vm.handleDelete = function(id){
               vm.deletePlayer(teamId, id);
             }
 
-            vm.handleCancel = function(id){
-              vm.getTeam();
+            vm.handleCancel = function(){
+              vm.getTeam(teamId);
             }
 
             function isInReadMode(id){

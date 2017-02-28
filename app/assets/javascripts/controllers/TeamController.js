@@ -60,7 +60,7 @@
               vm.deleteTeam(id);
             }
 
-            vm.handleCancel = function(id){
+            vm.handleCancel = function(){
               vm.getTeams();
             }
 
