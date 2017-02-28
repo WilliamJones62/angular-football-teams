@@ -5,16 +5,16 @@
         .module('app')
         .factory('ClubFactory', ['$http', function($http) {
             return {
-              getTeam: getTeam,
-              createPlayer: createPlayer,
-              deletePlayer: deletePlayer,
-              editPlayer: editPlayer
+                getTeam: getTeam,
+                createPlayer: createPlayer,
+                deletePlayer: deletePlayer,
+                editPlayer: editPlayer
             }
 
             function getTeam(id) {
-                return $http.get('/teams/' + id)
-                            .then(handleResponse)
-                            .catch(handleError)
+              return $http.get('/teams/' + id)
+                          .then(handleResponse)
+                          .catch(handleError)
             }
 
             function createPlayer(teamId, player) {
@@ -34,7 +34,6 @@
                           .then(handleResponse)
                           .catch(handleError)
             }
-
 
             function handleResponse(response) {
                 if (response.status === 200) return response.data

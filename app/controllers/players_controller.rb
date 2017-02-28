@@ -11,6 +11,8 @@ class PlayersController < ApplicationController
     @player = @team.players.build(players_params)
     if @player.save
       render :json => @player
+    else
+      render json: { errors: "Error creating player, please try again."}
     end
   end
 
@@ -21,30 +23,20 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
-    @team = @player.team
-    @players = @team.players
-    @player_ids = []
-    @prev_id = -1
-    @next_id = -1
-    @current_player_offset = -1
-    # load the player id array
-    @team.players.each do |player|
-      @player_ids << player.id
-      if player.id == @player.id
-        @current_player_offset = @player_ids.count - 1
-      end
+    if @player
+      render json: @player
+    else
+      render json: { errors: "This is not a player, please try again."}
     end
-    #load the previous and next player ids from the array
-    if @current_player_offset != 0
-      @prev_id = @player_ids[@current_player_offset - 1]
-    end
-    if @current_player_offset != @player_ids.count - 1
-      @next_id = @player_ids[@current_player_offset + 1]
-    end
+  end
 
-    session[:team_id] = @team.id
-    session[:player_id] = @player.id
-    @games = @player.games.all
+  def update
+    @player = Player.find(params[:id])
+    if @player.update(players_params)
+      render nothing: true
+    else
+      render json: { errors: "Error updating player, please try again."}
+    end
   end
 
   def destroy
@@ -58,8 +50,7 @@ class PlayersController < ApplicationController
 
   def data
     player = Player.find(params[:id])
-    render json: player.to_json(only: [:name, :id],
-                              include: [ games: { only: [:date, :id, :opponent]}])
+    render json: player.to_json(only: [:name, :id])
   end
 
   private

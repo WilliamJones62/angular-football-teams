@@ -5,8 +5,6 @@
         .module('app')
         .controller('TeamController',['TeamFactory', '$stateParams', function(TeamFactory, $stateParams) {
             var selectedId = -1;
-            var savedName = '';
-            var savedLeague = '';
             var vm = this;
             vm.team = { id: null, name: '', league: '' };
             vm.startEdit = startEdit;
