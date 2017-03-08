@@ -9,8 +9,8 @@
             vm.fixture = { date: null, opponent: '', home: '', for: 0, against: 0, status: ''};
             vm.teams = [];
             vm.games = [];
-            vm.name = $stateParams.name;
-            vm.league = $stateParams.league;
+            var name = $stateParams.name;
+            var league = $stateParams.league;
             var i = 0;
             var href = 'http://api.football-data.org/v1/competitions/';
             var competitionId = 0;
@@ -23,7 +23,7 @@
                 vm.competitions = res.data;
                 debugger
                 for (i = 0; i < vm.competitions.length; i++) {
-                 if (vm.competitions[i].league == vm.league) {
+                 if (vm.competitions[i].league == league) {
                    competitionId = vm.competitions[i].id;
                    competitionFound = true;
                    i = vm.competitions.length ++;
@@ -42,7 +42,7 @@
                 });
 
               for (i = 0; i < vm.teams.length; i++) {
-                if (vm.teams[i].name == vm.name) {
+                if (vm.teams[i].name == name) {
                   href = vm.teams[i].fixtures.href;
                   teamFound = true;
                   i = vm.teams.length ++;
