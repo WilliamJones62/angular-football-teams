@@ -46,6 +46,7 @@
       <a ui-sref="club({ id: team.id })">{{ team.name }} - {{ team.league }}</a>
       <button ng-click="vm.startEdit(team.id, team.name, team.league)">Edit</button>
       <button ng-click="vm.handleDelete(team.id)">Delete</button>
+      <button ui-sref="football-data({ name: team.name, league: team.league })">Fixtures</button>
     </div>
 
     <div ng-show="vm.isInEditMode(team.id)">

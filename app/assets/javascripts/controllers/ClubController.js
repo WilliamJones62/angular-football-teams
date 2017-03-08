@@ -7,7 +7,7 @@
             var selectedId = -1;
             var vm = this
             var teamId = $stateParams.id;
-            vm.player = { id: null, name: '', team_id: teamId, };
+            vm.player = { id: null, name: '', team_id: teamId};
             vm.startEdit = startEdit;
             vm.isInReadMode = isInReadMode;
             vm.isInEditMode = isInEditMode;
