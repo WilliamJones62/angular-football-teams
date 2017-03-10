@@ -30,7 +30,7 @@
                 name: null,
                 league: null
               }
-          })
+            })
 
         $urlRouterProvider.otherwise('/')
       })
