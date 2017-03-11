@@ -22,16 +22,6 @@
               controller: 'ClubController as vm'
           })
 
-          .state('football-data', {
-              url: 'api.football-data.org/v1/competitions/',
-              templateUrl: 'football-data.html',
-              controller: 'FootballDataController as vm',
-              params: {
-                name: null,
-                league: null
-              }
-            })
-
         $urlRouterProvider.otherwise('/')
       })
 }());

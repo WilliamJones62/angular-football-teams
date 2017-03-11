@@ -6,6 +6,7 @@
         .factory('ClubFactory', ['$http', function($http) {
             return {
                 getTeam: getTeam,
+                getFootballData: getFootballData,
                 createPlayer: createPlayer,
                 deletePlayer: deletePlayer,
                 editPlayer: editPlayer
@@ -13,6 +14,13 @@
 
             function getTeam(id) {
               return $http.get('/teams/' + id)
+                          .then(handleResponse)
+                          .catch(handleError)
+            }
+
+            function getFootballData(href) {
+              return $http.get(href, {
+          			headers: {'X-CSRF-Token': undefined, 'x-auth-token': 'd11d358be1d046c5b973b8a36e53a66c'}})
                           .then(handleResponse)
                           .catch(handleError)
             }

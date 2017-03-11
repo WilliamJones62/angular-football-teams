@@ -1,5 +1,17 @@
 <div class="club">
   <h1 class=" club-name text-center" ng-bind="vm.team.name"> </h1>
+  <h2 class=" club-league text-center" ng-bind="vm.team.league"> </h2>
+
+  <button ng-click="vm.loadFixtures()">Fixtures</button>
+
+  <div ng-repeat="game in vm.games">
+      {{ game.home }} game
+      Opponent - {{ game.opponent }}
+      Date - {{ game.date }}
+      Goals for - {{ game.for }}
+      Goals Against - {{ game.against }}
+      Status - {{ game.status }}
+  </div>
 
   <div class="margin-b-20">
     <button ng-click="showadd=true">Add a Player</button>
